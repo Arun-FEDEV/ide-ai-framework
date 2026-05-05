@@ -13,7 +13,7 @@ The goal is to give teams the same working feel as a disciplined Codex setup:
 
 ## Status
 
-This repo is a local scaffold ready for review. VS Code hook support is Preview, so the first production-ready release must be verified in a real VS Code Copilot Chat session before public release.
+This repo is an early public scaffold. VS Code hook support is Preview, so production use requires verification in a real VS Code Copilot Chat session before teams depend on the enforcement layer.
 
 ## Who This Is For
 
