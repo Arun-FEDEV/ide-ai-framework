@@ -1,0 +1,92 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/session_start.py",
+            "statusMessage": "Loading control-plane context"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/smart_router.py",
+            "statusMessage": "Routing prompt"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/pre_tool_use_policy.py",
+            "statusMessage": "Checking tool policy"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/post_tool_use_telemetry.py",
+            "statusMessage": "Recording tool telemetry"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/pre_compact.py",
+            "statusMessage": "Compacting control-plane state"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/subagent_policy.py",
+            "statusMessage": "Checking subagent policy"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/subagent_policy.py",
+            "statusMessage": "Recording subagent stop"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .ide-ai-framework/hooks/stop_outcome_logger.py",
+            "statusMessage": "Recording outcome"
+          }
+        ]
+      }
+    ]
+  }
+}
