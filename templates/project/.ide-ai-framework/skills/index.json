@@ -1,27 +1,146 @@
 {
   "version": 1,
+  "source": "codex-parity",
   "skills": [
-    {"name": "context-engineering", "path": "context-engineering/SKILL.md", "triggers": ["work/action requests", "phase workflow", "shared-picture"]},
-    {"name": "tdd", "path": "skills/tdd.md", "triggers": ["tdd", "test-first", "red-green-refactor"]},
-    {"name": "code-review", "path": "skills/code-review.md", "triggers": ["review", "audit changes", "regression risk"]},
-    {"name": "debugging", "path": "skills/debugging.md", "triggers": ["debug", "bug", "failing", "regression"]},
-    {"name": "security-review", "path": "skills/security-review.md", "triggers": ["security", "auth", "permissions", "secrets"]},
-    {"name": "performance-review", "path": "skills/performance-review.md", "triggers": ["performance", "latency", "memory", "rendering"]},
-    {"name": "architecture-review", "path": "skills/architecture-review.md", "triggers": ["architecture", "migration", "module boundary"]},
-    {"name": "git-safety", "path": "skills/git-safety.md", "triggers": ["git", "commit", "push", "branch", "pr"]},
-    {"name": "github-triage", "path": "skills/github-triage.md", "triggers": ["issue triage", "labels", "ready-for-agent"]},
-    {"name": "setup-pre-commit", "path": "skills/setup-pre-commit.md", "triggers": ["pre-commit", "husky", "lint-staged"]},
-    {"name": "request-refactor-plan", "path": "skills/request-refactor-plan.md", "triggers": ["refactor plan", "migration plan"]},
-    {"name": "to-issues", "path": "skills/to-issues.md", "triggers": ["break into issues", "tickets", "vertical slices"]},
-    {"name": "to-prd", "path": "skills/to-prd.md", "triggers": ["prd", "product requirements"]},
-    {"name": "qa", "path": "skills/qa.md", "triggers": ["qa session", "bug bash", "report bugs"]},
-    {"name": "triage-issue", "path": "skills/triage-issue.md", "triggers": ["triage bug", "root cause issue"]},
-    {"name": "design-interface", "path": "skills/design-interface.md", "triggers": ["api design", "interface design", "design it twice"]},
-    {"name": "domain-model", "path": "skills/domain-model.md", "triggers": ["domain model", "terminology", "ddd"]},
-    {"name": "ubiquitous-language", "path": "skills/ubiquitous-language.md", "triggers": ["glossary", "domain terms", "ubiquitous language"]},
-    {"name": "edit-article", "path": "skills/edit-article.md", "triggers": ["edit article", "revise draft", "tighten prose"]},
-    {"name": "scaffold-exercises", "path": "skills/scaffold-exercises.md", "triggers": ["exercise scaffold", "course section"]},
-    {"name": "project-pitfalls", "path": "skills/project-pitfalls.md", "triggers": ["historical mistakes", "pitfalls", "gotchas"]},
-    {"name": "browser-qa", "path": "skills/browser-qa.md", "triggers": ["browser", "localhost", "screenshot", "playwright"]}
+    {
+      "name": "imagegen",
+      "path": "skills/.system/imagegen/SKILL.md",
+      "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas."
+    },
+    {
+      "name": "openai-docs",
+      "path": "skills/.system/openai-docs/SKILL.md",
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations, help choosing the latest model for a use case, or model upgrade and prompt-upgrade guidance; prioritize OpenAI docs MCP tools, use bundled references only as helper context, and restrict any fallback browsing to official OpenAI domains."
+    },
+    {
+      "name": "plugin-creator",
+      "path": "skills/.system/plugin-creator/SKILL.md",
+      "description": "Create and scaffold plugin directories for Codex with a required `.codex-plugin/plugin.json`, optional plugin folders/files, and baseline placeholders you can edit before publishing or testing. Use when Codex needs to create a new local plugin, add optional plugin structure, or generate or update repo-root `.agents/plugins/marketplace.json` entries for plugin ordering and availability metadata."
+    },
+    {
+      "name": "skill-creator",
+      "path": "skills/.system/skill-creator/SKILL.md",
+      "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Codex's capabilities with specialized knowledge, workflows, or tool integrations."
+    },
+    {
+      "name": "skill-installer",
+      "path": "skills/.system/skill-installer/SKILL.md",
+      "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos)."
+    },
+    {
+      "name": "caveman",
+      "path": "skills/caveman/SKILL.md",
+      "description": ">"
+    },
+    {
+      "name": "context-engineering",
+      "path": "skills/context-engineering/SKILL.md",
+      "description": "Enforce the user's Dex-style coding workflow: shared-picture gate, research/plan/implement phases, durable artifacts, and smart compaction. Use when a prompt asks Codex to do work, inspect local project state, run commands, edit files, implement, fix, test, deploy, or change Codex/project setup."
+    },
+    {
+      "name": "design-an-interface",
+      "path": "skills/design-an-interface/SKILL.md",
+      "description": "Generate multiple radically different interface designs for a module. Use when user wants to design an API, explore interface options, compare module shapes, or mentions \"design it twice\"."
+    },
+    {
+      "name": "domain-model",
+      "path": "skills/domain-model/SKILL.md",
+      "description": "Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions."
+    },
+    {
+      "name": "edit-article",
+      "path": "skills/edit-article/SKILL.md",
+      "description": "Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft."
+    },
+    {
+      "name": "git-guardrails-claude-code",
+      "path": "skills/git-guardrails-claude-code/SKILL.md",
+      "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code."
+    },
+    {
+      "name": "github-triage",
+      "path": "skills/github-triage/SKILL.md",
+      "description": "Triage GitHub issues through a label-based state machine. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow."
+    },
+    {
+      "name": "grill-me",
+      "path": "skills/grill-me/SKILL.md",
+      "description": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions \"grill me\"."
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "path": "skills/improve-codebase-architecture/SKILL.md",
+      "description": "Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md and the decisions in docs/adr/. Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable."
+    },
+    {
+      "name": "migrate-to-shoehorn",
+      "path": "skills/migrate-to-shoehorn/SKILL.md",
+      "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data."
+    },
+    {
+      "name": "obsidian-vault",
+      "path": "skills/obsidian-vault/SKILL.md",
+      "description": "Search, create, and manage notes in the Obsidian vault with wikilinks and index notes. Use when user wants to find, create, or organize notes in Obsidian."
+    },
+    {
+      "name": "project-pitfalls",
+      "path": "skills/project-pitfalls/SKILL.md",
+      "description": "Use when working on project-specific workspace, project-specific workspace, project-specific workspace, or any non-trivial task where historical mistakes in ~/Obsidian/Coding/Mistakes/ should be checked before making changes."
+    },
+    {
+      "name": "qa",
+      "path": "skills/qa/SKILL.md",
+      "description": "Interactive QA session where user reports bugs or issues conversationally, and the agent drafts GitHub issues for approval. Explores the codebase for context and domain language. Use when user wants to report bugs, do QA, draft issues conversationally, or mentions \"QA session\"."
+    },
+    {
+      "name": "request-refactor-plan",
+      "path": "skills/request-refactor-plan/SKILL.md",
+      "description": "Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps."
+    },
+    {
+      "name": "scaffold-exercises",
+      "path": "skills/scaffold-exercises/SKILL.md",
+      "description": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section."
+    },
+    {
+      "name": "setup-pre-commit",
+      "path": "skills/setup-pre-commit/SKILL.md",
+      "description": "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing."
+    },
+    {
+      "name": "tdd",
+      "path": "skills/tdd/SKILL.md",
+      "description": "Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions \"red-green-refactor\", wants integration tests, or asks for test-first development."
+    },
+    {
+      "name": "to-issues",
+      "path": "skills/to-issues/SKILL.md",
+      "description": "Break a plan, spec, or PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues."
+    },
+    {
+      "name": "to-prd",
+      "path": "skills/to-prd/SKILL.md",
+      "description": "Turn the current conversation context into a PRD and draft it as a GitHub issue. Use when user wants to create a PRD from the current context."
+    },
+    {
+      "name": "triage-issue",
+      "path": "skills/triage-issue/SKILL.md",
+      "description": "Triage a bug or issue by exploring the codebase to find root cause, then draft a GitHub issue with a TDD-based fix plan. Use when user reports a bug, wants to file an issue, mentions \"triage\", or wants to investigate and plan a fix for a problem."
+    },
+    {
+      "name": "ubiquitous-language",
+      "path": "skills/ubiquitous-language/SKILL.md",
+      "description": "Extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to define domain terms, build a glossary, harden terminology, create a ubiquitous language, or mentions \"domain model\" or \"DDD\"."
+    },
+    {
+      "name": "write-a-skill",
+      "path": "skills/write-a-skill/SKILL.md",
+      "description": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill."
+    },
+    {
+      "name": "zoom-out",
+      "path": "skills/zoom-out/SKILL.md",
+      "description": "Tell the agent to zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture."
+    }
   ]
 }

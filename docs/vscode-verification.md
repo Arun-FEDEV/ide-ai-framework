@@ -7,7 +7,8 @@ Run these checks in a clean workspace after installation.
 - Open VS Code in the installed target workspace.
 - Run `Chat: Open Customizations`.
 - Confirm the Copilot instructions, context-engineering instruction file, agents, and prompt files appear.
-- Confirm `.ide-ai-framework/skills/index.json`, `.ide-ai-framework/context-engineering/SKILL.md`, and `.ide-ai-framework/compaction/context-engineering.md` exist in the target workspace.
+- Confirm `.ide-ai-framework/skills/index.json`, `.ide-ai-framework/skills/tdd/SKILL.md`, `.ide-ai-framework/context-engineering/SKILL.md`, and `.ide-ai-framework/compaction/context-engineering.md` exist in the target workspace.
+- Confirm `.ide-ai-framework/codex-parity/hooks/smart_router.py` and `.ide-ai-framework/codex-parity/agents/reviewer.toml` exist for source parity.
 - Open the Copilot Chat Hooks output channel and confirm the hook config loads.
 
 ## Shared-Picture Gate

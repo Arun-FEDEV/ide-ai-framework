@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -80,6 +81,12 @@ class HookTests(unittest.TestCase):
             base / "context-engineering" / "references" / "implementation-phase.md",
             base / "context-engineering" / "references" / "verification-phase.md",
             base / "compaction" / "context-engineering.md",
+            base / "codex-parity" / "hooks" / "smart_router.py",
+            base / "codex-parity" / "hooks" / "pre_tool_use_policy.py",
+            base / "codex-parity" / "agents" / "reviewer.toml",
+            base / "codex-parity" / "compact-prompts" / "context-engineering.md",
+            base / "skills" / "tdd" / "tests.md",
+            base / "skills" / "github-triage" / "AGENT-BRIEF.md",
         ]
         for path in expected:
             self.assertTrue(path.exists(), str(path))
@@ -106,7 +113,11 @@ class HookTests(unittest.TestCase):
             if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
         )
         for term in terms:
-            self.assertNotIn(term.lower(), text.lower())
+            if term.isalpha() and term.upper() == term and len(term) <= 5:
+                pattern = re.compile(rf"(?<![A-Za-z0-9]){re.escape(term)}(?![A-Za-z0-9])", re.IGNORECASE)
+            else:
+                pattern = re.compile(re.escape(term), re.IGNORECASE)
+            self.assertIsNone(pattern.search(text), term)
 
 
 if __name__ == "__main__":

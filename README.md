@@ -42,6 +42,7 @@ The installer copies:
 - `.github/hooks/ide-ai-framework.json`
 - `.ide-ai-framework/skills/*`
 - `.ide-ai-framework/agents/*`
+- `.ide-ai-framework/codex-parity/*`
 - `.ide-ai-framework/context-engineering/*`
 - `.ide-ai-framework/compaction/*`
 - `.ide-ai-framework/hooks/*.py`
@@ -77,7 +78,9 @@ templates/project/.github/     Copilot instructions, agents, prompts, hooks
 templates/project/.ide-ai-framework/hooks/
                                Standalone hook scripts installed into projects
 templates/project/.ide-ai-framework/skills/
-                               Portable skill library and registry
+                               Full Codex-parity skill library and registry
+templates/project/.ide-ai-framework/codex-parity/
+                               Source parity assets: hook scripts, agent TOMLs, compaction prompt
 templates/project/.ide-ai-framework/context-engineering/
                                Shared-Picture Gate and phase references
 templates/project/.ide-ai-framework/compaction/

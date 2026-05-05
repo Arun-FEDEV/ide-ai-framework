@@ -12,6 +12,7 @@ Supported by this repo:
 - Prompt files via `.github/prompts/*.prompt.md`.
 - Hook-based enforcement via `.github/hooks/*.json`, where available.
 - Portable framework assets under `.ide-ai-framework` for skills, agents, compaction, and context engineering.
+- Codex-parity source assets under `.ide-ai-framework/codex-parity` for deeper adapter work.
 
 Limitations:
 
@@ -28,6 +29,7 @@ Expected fallback:
 - Use generated instruction files and manual prompts.
 - Use shell-level guardrails or wrapper commands for deterministic blocking.
 - Read `.ide-ai-framework/skills/index.json` and `.ide-ai-framework/agents/index.json` as the adapter registry.
+- Use `.ide-ai-framework/codex-parity/hooks` and `.ide-ai-framework/codex-parity/agents` as source material for native CLI adapters.
 
 ## GitHub Copilot Cloud Agents
 

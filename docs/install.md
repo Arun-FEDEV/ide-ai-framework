@@ -27,6 +27,7 @@ python3 scripts/install.py --target /path/to/project --force
 - Context-engineering workflow under `.ide-ai-framework/context-engineering`.
 - Compaction prompt under `.ide-ai-framework/compaction`.
 - Client-neutral agent specs under `.ide-ai-framework/agents`.
+- Codex-parity source assets under `.ide-ai-framework/codex-parity`.
 
 ## Rollback
 
