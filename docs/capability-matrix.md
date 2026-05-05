@@ -11,6 +11,7 @@ Supported by this repo:
 - Custom agents via `.github/agents/*.agent.md`.
 - Prompt files via `.github/prompts/*.prompt.md`.
 - Hook-based enforcement via `.github/hooks/*.json`, where available.
+- Portable framework assets under `.ide-ai-framework` for skills, agents, compaction, and context engineering.
 
 Limitations:
 
@@ -26,6 +27,7 @@ Expected fallback:
 
 - Use generated instruction files and manual prompts.
 - Use shell-level guardrails or wrapper commands for deterministic blocking.
+- Read `.ide-ai-framework/skills/index.json` and `.ide-ai-framework/agents/index.json` as the adapter registry.
 
 ## GitHub Copilot Cloud Agents
 
@@ -35,6 +37,7 @@ Expected fallback:
 
 - Use agent instruction files supported by the cloud agent.
 - Do not assume VS Code local hooks run in cloud execution.
+- Copy or reference the portable `.ide-ai-framework` assets in cloud-agent setup where supported.
 
 ## Other AI Coding CLIs
 

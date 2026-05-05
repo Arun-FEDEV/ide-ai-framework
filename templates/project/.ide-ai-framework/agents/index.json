@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "agents": [
+    {"name": "control-plane", "path": "control-plane.md", "mode": "write-capable"},
+    {"name": "planner", "path": "planner.md", "mode": "read-only"},
+    {"name": "reviewer", "path": "reviewer.md", "mode": "read-only"},
+    {"name": "security-reviewer", "path": "security-reviewer.md", "mode": "read-only"},
+    {"name": "performance-reviewer", "path": "performance-reviewer.md", "mode": "read-only"},
+    {"name": "architect-reviewer", "path": "architect-reviewer.md", "mode": "read-only"},
+    {"name": "debugger", "path": "debugger.md", "mode": "write-capable"},
+    {"name": "test-worker", "path": "test-worker.md", "mode": "write-capable"},
+    {"name": "git-worker", "path": "git-worker.md", "mode": "approval-gated"}
+  ]
+}

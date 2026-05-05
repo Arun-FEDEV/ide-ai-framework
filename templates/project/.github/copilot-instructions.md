@@ -22,3 +22,13 @@ Mirror the Codex working style for GitHub Copilot Chat in this workspace.
 Instructions shape behavior but do not provide deterministic blocking. The hook layer planned for this workspace is responsible for hard blocks, protected-branch policy, phase relocking, and telemetry.
 
 Until hooks are installed and verified, treat these instructions as binding workflow rules and state clearly when enforcement has not been proven in VS Code.
+
+## Installed Framework Assets
+
+Use these local assets when a workflow needs more detail:
+
+- `.ide-ai-framework/skills/index.json`
+- `.ide-ai-framework/context-engineering/SKILL.md`
+- `.ide-ai-framework/context-engineering/references/`
+- `.ide-ai-framework/compaction/context-engineering.md`
+- `.ide-ai-framework/agents/index.json`

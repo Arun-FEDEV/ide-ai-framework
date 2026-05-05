@@ -19,6 +19,16 @@ EXPECTED = [
     "templates/project/.github/copilot-instructions.md",
     "templates/project/.github/instructions/context-engineering.instructions.md",
     "templates/project/.github/hooks/ide-ai-framework.json",
+    "templates/project/.github/prompts/compact.prompt.md",
+    "templates/project/.ide-ai-framework/README.md",
+    "templates/project/.ide-ai-framework/agents/index.json",
+    "templates/project/.ide-ai-framework/skills/index.json",
+    "templates/project/.ide-ai-framework/context-engineering/SKILL.md",
+    "templates/project/.ide-ai-framework/context-engineering/references/research-phase.md",
+    "templates/project/.ide-ai-framework/context-engineering/references/plan-phase.md",
+    "templates/project/.ide-ai-framework/context-engineering/references/implementation-phase.md",
+    "templates/project/.ide-ai-framework/context-engineering/references/verification-phase.md",
+    "templates/project/.ide-ai-framework/compaction/context-engineering.md",
     "templates/project/.ide-ai-framework/hooks/common.py",
     "templates/project/.ide-ai-framework/hooks/smart_router.py",
     "templates/project/.ide-ai-framework/hooks/pre_tool_use_policy.py",
@@ -41,6 +51,8 @@ def main() -> int:
         raise SystemExit("missing files:\n" + "\n".join(missing))
 
     json.loads((ROOT / "templates/project/.github/hooks/ide-ai-framework.json").read_text(encoding="utf-8"))
+    skill_index = json.loads((ROOT / "templates/project/.ide-ai-framework/skills/index.json").read_text(encoding="utf-8"))
+    agent_index = json.loads((ROOT / "templates/project/.ide-ai-framework/agents/index.json").read_text(encoding="utf-8"))
 
     for path in (ROOT / "templates/project/.github/agents").glob("*.agent.md"):
         fm = frontmatter(path)
@@ -53,6 +65,19 @@ def main() -> int:
         for key in ("name:", "description:", "agent:"):
             if key not in fm:
                 raise SystemExit(f"{path}: missing {key}")
+
+    for item in skill_index.get("skills", []):
+        rel = item.get("path")
+        if not rel or not (ROOT / "templates/project/.ide-ai-framework" / rel).exists():
+            raise SystemExit(f"skill registry points to missing path: {rel}")
+
+    for item in agent_index.get("agents", []):
+        rel = item.get("path")
+        if not rel or not (ROOT / "templates/project/.ide-ai-framework/agents" / rel).exists():
+            raise SystemExit(f"agent registry points to missing path: {rel}")
+
+    if len(skill_index.get("skills", [])) < 20:
+        raise SystemExit("skill registry is unexpectedly small")
 
     print("package verification ok")
     return 0

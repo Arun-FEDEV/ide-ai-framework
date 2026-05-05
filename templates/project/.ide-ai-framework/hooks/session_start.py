@@ -21,10 +21,11 @@ def main() -> int:
     branch = run(["git", "rev-parse", "--abbrev-ref", "HEAD"], where) or "n/a"
     has_templates = Path(where, ".github", "copilot-instructions.md").exists()
     notes = [
-        f"CONTROL-PLANE: active",
+        f"IDE-AI-FRAMEWORK: active",
         f"ROOT: {root}",
         f"BRANCH: {branch}",
         "WORKFLOW: Shared-Picture Gate, phase boundaries, narrow verification, progress artifacts.",
+        "ASSETS: .ide-ai-framework/skills, .ide-ai-framework/agents, .ide-ai-framework/context-engineering, .ide-ai-framework/compaction.",
         "SAFETY: hook policy blocks locked local/project-state tools, dangerous commands, and protected-branch git writes when supported by the host.",
         "AGENTS: do not delegate unless the user explicitly asks for delegation or parallel agents.",
     ]

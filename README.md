@@ -40,6 +40,10 @@ The installer copies:
 - `.github/agents/*.agent.md`
 - `.github/prompts/*.prompt.md`
 - `.github/hooks/ide-ai-framework.json`
+- `.ide-ai-framework/skills/*`
+- `.ide-ai-framework/agents/*`
+- `.ide-ai-framework/context-engineering/*`
+- `.ide-ai-framework/compaction/*`
 - `.ide-ai-framework/hooks/*.py`
 
 ## Verify The Package
@@ -72,6 +76,14 @@ templates/project/             Files copied into developer projects
 templates/project/.github/     Copilot instructions, agents, prompts, hooks
 templates/project/.ide-ai-framework/hooks/
                                Standalone hook scripts installed into projects
+templates/project/.ide-ai-framework/skills/
+                               Portable skill library and registry
+templates/project/.ide-ai-framework/context-engineering/
+                               Shared-Picture Gate and phase references
+templates/project/.ide-ai-framework/compaction/
+                               Operational compaction prompt
+templates/project/.ide-ai-framework/agents/
+                               Portable agent specs for other adapters
 tests/                         Fixture tests for installable hooks
 ```
 

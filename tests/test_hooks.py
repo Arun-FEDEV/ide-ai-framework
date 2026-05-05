@@ -42,6 +42,7 @@ class HookTests(unittest.TestCase):
                 home,
             )
             self.assertIn("SHARED-PICTURE-GATE: required", route["hookSpecificOutput"]["additionalContext"])
+            self.assertIn("RECOMMENDED-SKILLS", route["hookSpecificOutput"]["additionalContext"])
 
             denied = run_hook(
                 "pre_tool_use_policy.py",
@@ -56,6 +57,34 @@ class HookTests(unittest.TestCase):
                 home,
             )
             self.assertIn("confirmed", unlocked["hookSpecificOutput"]["additionalContext"])
+
+    def test_skill_routing_recommends_tdd(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            route = run_hook(
+                "smart_router.py",
+                {"session_id": "s3", "turn_id": "t1", "prompt": "use TDD to add this feature"},
+                Path(tmp),
+            )
+            context = route["hookSpecificOutput"]["additionalContext"]
+            self.assertIn("context-engineering", context)
+            self.assertIn("tdd", context)
+
+    def test_framework_assets_are_packaged(self) -> None:
+        base = ROOT / "templates" / "project" / ".ide-ai-framework"
+        expected = [
+            base / "skills" / "index.json",
+            base / "agents" / "index.json",
+            base / "context-engineering" / "SKILL.md",
+            base / "context-engineering" / "references" / "research-phase.md",
+            base / "context-engineering" / "references" / "plan-phase.md",
+            base / "context-engineering" / "references" / "implementation-phase.md",
+            base / "context-engineering" / "references" / "verification-phase.md",
+            base / "compaction" / "context-engineering.md",
+        ]
+        for path in expected:
+            self.assertTrue(path.exists(), str(path))
+        skills = json.loads((base / "skills" / "index.json").read_text(encoding="utf-8"))
+        self.assertGreaterEqual(len(skills["skills"]), 20)
 
     def test_destructive_command_is_denied(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

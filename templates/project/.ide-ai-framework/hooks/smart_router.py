@@ -56,6 +56,46 @@ def domain(prompt: str) -> str:
     return "general"
 
 
+def recommended_skills(prompt: str, dom: str) -> list[str]:
+    text = normalize_prompt(prompt)
+    skills: list[str] = []
+    checks = [
+        ("context-engineering", r".+"),
+        ("tdd", r"\b(tdd|test-first|red-green-refactor|write tests first)\b"),
+        ("code-review", r"\b(review|audit|regression risk)\b"),
+        ("debugging", r"\b(debug|bug|broken|error|failing|regression)\b"),
+        ("security-review", r"\b(security|auth|secret|permission|vulnerability)\b"),
+        ("performance-review", r"\b(performance|latency|memory|slow|bundle|render)\b"),
+        ("architecture-review", r"\b(architecture|migration|rewrite|module boundary|platform)\b"),
+        ("git-safety", r"\b(git|branch|commit|push|pull request|merge)\b"),
+        ("github-triage", r"\b(issue triage|github triage|labels|ready-for-agent)\b"),
+        ("setup-pre-commit", r"\b(pre-commit|precommit|husky|lint-staged)\b"),
+        ("request-refactor-plan", r"\b(refactor plan|migration plan)\b"),
+        ("to-issues", r"\b(break.*issues|tickets|vertical slices)\b"),
+        ("to-prd", r"\b(prd|product requirements)\b"),
+        ("qa", r"\b(qa session|bug bash|report bugs)\b"),
+        ("triage-issue", r"\b(triage.*bug|root cause.*issue)\b"),
+        ("design-interface", r"\b(api design|interface design|design it twice)\b"),
+        ("domain-model", r"\b(domain model|terminology|ddd)\b"),
+        ("ubiquitous-language", r"\b(glossary|domain terms|ubiquitous language)\b"),
+        ("browser-qa", r"\b(browser|localhost|screenshot|playwright)\b"),
+    ]
+    for skill, pattern in checks:
+        if re.search(pattern, text) and skill not in skills:
+            skills.append(skill)
+    domain_defaults = {
+        "security": "security-review",
+        "debug": "debugging",
+        "frontend": "browser-qa",
+        "git": "git-safety",
+        "testing": "tdd",
+    }
+    default = domain_defaults.get(dom)
+    if default and default not in skills:
+        skills.append(default)
+    return skills
+
+
 def is_work_action(prompt: str) -> bool:
     if is_confirmation(prompt):
         return False
@@ -72,6 +112,7 @@ def main() -> int:
 
     level = complexity(prompt)
     dom = domain(prompt)
+    skills = recommended_skills(prompt, dom)
     gate = "idle"
     phase = state.get("phase") or "analysis"
 
@@ -83,6 +124,7 @@ def main() -> int:
                 f"ROUTE: L{level} | workspace | {dom}",
                 "STRATEGY: inline-first",
                 f"TURN-KIND: {phase}",
+                f"RECOMMENDED-SKILLS: {', '.join(skills)}",
                 "AGENT-POLICY: stay inline unless the user explicitly asks for delegation or parallel agents.",
                 f"SHARED-PICTURE-GATE: confirmed; `{next_phase}` phase is unlocked for this turn only.",
                 "PHASE-BOUNDARY: stop after this phase and request `confirmed: proceed` before the next phase.",
@@ -96,6 +138,7 @@ def main() -> int:
                 f"ROUTE: L{level} | workspace | {dom}",
                 "STRATEGY: inline-first",
                 "TURN-KIND: implementation",
+                f"RECOMMENDED-SKILLS: {', '.join(skills)}",
                 "AGENT-POLICY: stay inline unless the user explicitly asks for delegation or parallel agents.",
                 "SHARED-PICTURE-GATE: required before local/project-state tools for this work/action request.",
                 "CONFIRMATION: ask tailored output-focused questions one at a time, present a Shared-Picture Contract, then require exact `confirmed: proceed`.",
@@ -103,7 +146,13 @@ def main() -> int:
             ]
         )
     else:
-        context = f"ROUTE: L{level} | workspace | {dom}\nSTRATEGY: inline-first"
+        context = "\n".join(
+            [
+                f"ROUTE: L{level} | workspace | {dom}",
+                "STRATEGY: inline-first",
+                f"RECOMMENDED-SKILLS: {', '.join(skills)}",
+            ]
+        )
 
     event = {
         "ts": utc_now(),
@@ -115,6 +164,7 @@ def main() -> int:
         "domain": dom,
         "shared_picture_gate": gate,
         "phase": phase,
+        "recommended_skills": skills,
         "prompt_excerpt": text_excerpt(prompt, 300),
     }
     append_event(event)

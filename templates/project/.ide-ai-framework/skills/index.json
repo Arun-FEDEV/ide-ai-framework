@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "skills": [
+    {"name": "context-engineering", "path": "context-engineering/SKILL.md", "triggers": ["work/action requests", "phase workflow", "shared-picture"]},
+    {"name": "tdd", "path": "skills/tdd.md", "triggers": ["tdd", "test-first", "red-green-refactor"]},
+    {"name": "code-review", "path": "skills/code-review.md", "triggers": ["review", "audit changes", "regression risk"]},
+    {"name": "debugging", "path": "skills/debugging.md", "triggers": ["debug", "bug", "failing", "regression"]},
+    {"name": "security-review", "path": "skills/security-review.md", "triggers": ["security", "auth", "permissions", "secrets"]},
+    {"name": "performance-review", "path": "skills/performance-review.md", "triggers": ["performance", "latency", "memory", "rendering"]},
+    {"name": "architecture-review", "path": "skills/architecture-review.md", "triggers": ["architecture", "migration", "module boundary"]},
+    {"name": "git-safety", "path": "skills/git-safety.md", "triggers": ["git", "commit", "push", "branch", "pr"]},
+    {"name": "github-triage", "path": "skills/github-triage.md", "triggers": ["issue triage", "labels", "ready-for-agent"]},
+    {"name": "setup-pre-commit", "path": "skills/setup-pre-commit.md", "triggers": ["pre-commit", "husky", "lint-staged"]},
+    {"name": "request-refactor-plan", "path": "skills/request-refactor-plan.md", "triggers": ["refactor plan", "migration plan"]},
+    {"name": "to-issues", "path": "skills/to-issues.md", "triggers": ["break into issues", "tickets", "vertical slices"]},
+    {"name": "to-prd", "path": "skills/to-prd.md", "triggers": ["prd", "product requirements"]},
+    {"name": "qa", "path": "skills/qa.md", "triggers": ["qa session", "bug bash", "report bugs"]},
+    {"name": "triage-issue", "path": "skills/triage-issue.md", "triggers": ["triage bug", "root cause issue"]},
+    {"name": "design-interface", "path": "skills/design-interface.md", "triggers": ["api design", "interface design", "design it twice"]},
+    {"name": "domain-model", "path": "skills/domain-model.md", "triggers": ["domain model", "terminology", "ddd"]},
+    {"name": "ubiquitous-language", "path": "skills/ubiquitous-language.md", "triggers": ["glossary", "domain terms", "ubiquitous language"]},
+    {"name": "edit-article", "path": "skills/edit-article.md", "triggers": ["edit article", "revise draft", "tighten prose"]},
+    {"name": "scaffold-exercises", "path": "skills/scaffold-exercises.md", "triggers": ["exercise scaffold", "course section"]},
+    {"name": "project-pitfalls", "path": "skills/project-pitfalls.md", "triggers": ["historical mistakes", "pitfalls", "gotchas"]},
+    {"name": "browser-qa", "path": "skills/browser-qa.md", "triggers": ["browser", "localhost", "screenshot", "playwright"]}
+  ]
+}

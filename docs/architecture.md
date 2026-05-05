@@ -13,6 +13,15 @@ Files copied into `.github`:
 
 These files shape model behavior but are not deterministic enforcement.
 
+Portable framework assets copied into `.ide-ai-framework`:
+
+- `skills/index.json` and `skills/*.md` provide the skill library.
+- `agents/index.json` and `agents/*.md` provide client-neutral agent specs.
+- `context-engineering/SKILL.md` and `context-engineering/references/*.md` provide the phase workflow.
+- `compaction/context-engineering.md` provides the operational compaction prompt.
+
+These assets let IDE and CLI adapters discover the same framework behavior even when they do not understand VS Code-specific `.github` files.
+
 ## Enforcement Layer
 
 Files copied into `.ide-ai-framework/hooks`:
@@ -29,6 +38,8 @@ Files copied into `.ide-ai-framework/hooks`:
 These scripts are registered from `.github/hooks/ide-ai-framework.json`.
 
 The hook scripts maintain session state under `IDE_AI_FRAMEWORK_HOME`, defaulting to `~/.ide-ai-framework`.
+
+`smart_router.py` injects route context and recommended skill names from the installed skill registry semantics. `pre_compact.py` points the client to the compaction prompt.
 
 ## Proof Layer
 

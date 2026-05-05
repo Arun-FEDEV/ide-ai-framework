@@ -7,6 +7,7 @@ Run these checks in a clean workspace after installation.
 - Open VS Code in the installed target workspace.
 - Run `Chat: Open Customizations`.
 - Confirm the Copilot instructions, context-engineering instruction file, agents, and prompt files appear.
+- Confirm `.ide-ai-framework/skills/index.json`, `.ide-ai-framework/context-engineering/SKILL.md`, and `.ide-ai-framework/compaction/context-engineering.md` exist in the target workspace.
 - Open the Copilot Chat Hooks output channel and confirm the hook config loads.
 
 ## Shared-Picture Gate
@@ -34,3 +35,10 @@ python3 .ide-ai-framework/hooks/telemetry_report.py
 ```
 
 Expected: recent prompt routes, command records, verification commands, and stop outcomes appear.
+
+## Skill Routing
+
+- Ask for TDD or test-first implementation.
+- Expected: route context includes `RECOMMENDED-SKILLS` with `context-engineering` and `tdd`.
+- Ask for a security review.
+- Expected: route context includes `security-review`.

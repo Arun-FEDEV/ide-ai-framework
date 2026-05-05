@@ -13,6 +13,7 @@ def main() -> int:
             f"phase: {state.get('phase', 'unknown')}",
             f"gate: {state.get('shared_picture_gate', 'unknown')}",
             f"next_phase: {state.get('shared_picture_next_phase', 'research')}",
+            "prompt: .ide-ai-framework/compaction/context-engineering.md",
             "preserve goal, contract, current phase, decisions, files, verification, blockers, and next action.",
         ]
     )
